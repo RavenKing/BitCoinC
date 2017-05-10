@@ -18,6 +18,9 @@ module.exports = {
         }
       },
     {
+      test: /\.less$/, // Only .css files
+      loader: 'style!css!less' // Run both loaders
+    }, {
       test: /\.css$/, // Only .css files
       loader: 'style!css' // Run both loaders
     }
