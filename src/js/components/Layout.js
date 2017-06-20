@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import Home from "./home/home"
+import BitHome from "./BitHome/BitHome"
 
 export default class Layout extends React.Component {
 
@@ -14,7 +14,7 @@ export default class Layout extends React.Component {
         
     return (
          <div>
-          <Home></Home>
+          <BitHome></BitHome>
 
 
           </div>
