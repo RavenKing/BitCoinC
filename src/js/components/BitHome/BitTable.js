@@ -37,8 +37,22 @@ export default class Header extends React.Component {
 
 
 			];
+
+			this.refreshData =this.refreshData.bind(this)
 this.state={columns:columns}
   }
+
+  refreshData()
+  {
+  	this.props.dispatch(GetBitData());
+  }
+
+  componentDidMount() {
+	
+  	setInterval(this.refreshData,10000)
+	}
+
+
  render() {
  	console.log(this.props);
  	var dataS=[];
