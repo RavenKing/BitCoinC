@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Menu, Icon,Table} from 'antd';
-import {GetBitData} from '../Actions/transactionAction';
+import {GetBitData,GetDetailData} from '../Actions/transactionAction';
 import {connect} from "react-redux";
 
 @connect((store)=>{    
@@ -20,6 +20,9 @@ export default class Header extends React.Component {
 			  title: '比特币/汇率',
 			  dataIndex: 'symbol',
 			  key: 'symbol',
+			  render:(text,record) =>
+            <a href="#" onClick={this.GoToDetail.bind(this,record)} >{record.symbol}</a>
+
 			}, {
 			  title: '价格',
 			  dataIndex: 'p_new',
@@ -42,6 +45,12 @@ export default class Header extends React.Component {
 this.state={columns:columns}
   }
 
+GoToDetail(record)
+{ 
+	console.log(record.symbol);
+	this.props.dispatch(GetDetailData(record.symbol));
+}
+
   refreshData()
   {
   	this.props.dispatch(GetBitData());
@@ -49,7 +58,7 @@ this.state={columns:columns}
 
   componentDidMount() {
 	
-  	setInterval(this.refreshData,10000)
+  //	setInterval(this.refreshData,10000)
 	}
 
 
@@ -61,7 +70,7 @@ this.state={columns:columns}
      }
      return (
      <div>
-     <Table dataSource={dataS} columns={this.state.columns}  bordered/>
+     <Table dataSource={dataS} columns={this.state.columns}  bordered />
 
      </div>
      )

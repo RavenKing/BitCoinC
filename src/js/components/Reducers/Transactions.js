@@ -1,13 +1,18 @@
 export default function Transaction (
   state = {
    status:"Cool",
-   BitData:[]
+   BitData:[],
+   DetailData:[]
   }, action
 ) {
   switch (action.type) {
 
     case "BIT_DATA":{
       return {...state,BitData:action.payload}
+    }
+    case "DETAIL_DATA":
+    {
+      return {...state,DetailData:action.payload}
     }
         case "CREATE_DOCUMENT":
         {

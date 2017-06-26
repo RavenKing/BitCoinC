@@ -18,6 +18,26 @@ return dispatch=>{
     })
 }
 }
+export function GetDetailData(Symbol)
+{
+  return dispatch=>{
+
+    axios.get("http://api.huobi.com/staticmarket/ltc_kline_100_json.js",
+                      {headers:{
+                      'X-My-Custom-Header': 'Header-Value',
+                      'content-type':'application/json'
+                      }})
+    .then(function(response,error){
+      if(response.data)
+        {
+            console.log(response);
+            dispatch({type:"DETAIL_DATA",payload:response.data})  
+        }
+    })
+
+  }
+
+}
 
 
 
