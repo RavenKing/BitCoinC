@@ -1,10 +1,34 @@
 import axios from "axios"
-
-export function GetBitData()
+export function getSystemData()
 {
 return dispatch=>{
 
-    axios.get("http://api.huobi.com/staticmarket/detail_ltc_json.js",
+    axios.get("http://localhost:8083/api/bitcoins",
+                      {headers:{
+                      'X-My-Custom-Header': 'Header-Value',
+                      'content-type':'application/json'
+                      }})
+    .then(function(response,error){
+      if(response.data)
+        {console.log(response);
+    dispatch({type:"SYS_DATA",payload:response.data})  
+        }
+    })
+}
+
+
+}
+
+
+export function GetBitData(Sources)
+{
+
+return dispatch=>{
+
+
+Sources.map((one)=>{
+  console.log(one.url)
+    axios.get(one.url,
                       {headers:{
                       'X-My-Custom-Header': 'Header-Value',
                       'content-type':'application/json'
@@ -13,10 +37,16 @@ return dispatch=>{
       if(response.data)
         {console.log(response);
 
+        
     dispatch({type:"BIT_DATA",payload:response.data})  
         }
     })
+  })
+
+
 }
+
+
 }
 export function GetDetailData(Symbol)
 {
@@ -36,6 +66,29 @@ export function GetDetailData(Symbol)
     })
 
   }
+
+}
+export function PostDataSourceData(values)
+{
+
+return dispatch=>{
+
+    axios.post("http://localhost:8083/api/bitcoins",
+                      {
+                        data:values,
+                        headers:{
+                      'X-My-Custom-Header': 'Header-Value',
+                      'content-type':'application/json'
+                      }})
+    .then(function(response,error){
+      if(response.data)
+        {
+            console.log(response);
+        }
+    })
+
+  }
+
 
 }
 

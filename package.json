@@ -48,7 +48,7 @@
     "babel-plugin-antd": "^0.4.0"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot --port 8083",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot --port 8086",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

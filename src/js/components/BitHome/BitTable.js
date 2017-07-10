@@ -11,36 +11,43 @@ import BitGraph from './BitGraph'
     
 })
 export default class Header extends React.Component {
-			  constructor(props) {
-			 
+			  constructor(props) { 
 	   super(props);
+
+
+
 			const columns = [{
 			  title: '比特币/汇率',
-			  dataIndex: 'symbol',
-			  key: 'symbol',
+			  dataIndex: 'identify',
+			  key: 'identify',
 			  render:(text,record) =>
             <a href="#" onClick={this.GoToDetail.bind(this,record)} >{record.symbol}</a>
 
 			}, {
 			  title: '价格',
-			  dataIndex: 'p_new',
-			  key: 'p_new',
+			  dataIndex: 'price',
+			  key: 'price',
 			}, 
 			{title:"今日",
 				children:[{title:"浮动",
-						  dataIndex: 'level',
-						  key: 'level'},
+						  dataIndex: 'change',
+						  key: 'change'},
 						  {title:"交易量",
 						  dataIndex: 'amount',
 						  key: 'amount'}
 						  ]
+			},
+			{
+				title:"数据源",
+				key:'dataSouce',
+				render:()=><p>"huobiwang"</p>
 			}
 
 
 			];
 
 			this.refreshData =this.refreshData.bind(this)
-			this.state={columns:columns,GraphData:[],showGraph:false}
+			this.state={columns:columns,GraphData:[],showGraph:false,SystemData:[]}
   }
 		GoToDetail(record)
 		{ 
@@ -50,19 +57,28 @@ export default class Header extends React.Component {
 
 		  refreshData()
 		  {
-		  	this.props.dispatch(GetBitData());
+		  	console.log("refresh")
+		  	console.log(this.state.SystemData);
+		  this.props.dispatch(GetBitData(this.state.SystemData));
 		  }
 
 		  componentDidMount() {
 			
-		  	setInterval(this.refreshData,10000)
+			setInterval(this.refreshData,10000)
 			}
 
 			componentWillReceiveProps(NextProps)
 			{
 				console.log(NextProps);
 				if(NextProps.BitData.DetailData.length>0)
-				{this.setState({GraphData:NextProps.BitData.DetailData,showGraph:true})
+				{
+					this.setState({GraphData:NextProps.BitData.DetailData,showGraph:true})
+
+				}
+				if(NextProps.BitData.SystemData.length>0)
+				{	
+					this.setState({SystemData:NextProps.BitData.SystemData})
+
 				}
 			}
 

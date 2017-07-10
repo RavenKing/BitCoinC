@@ -6,12 +6,14 @@ import '../css/antMotion_style.less';
 import store from './store';
 import { Provider } from "react-redux"; 
 
+import Admin from "./components/Admin/admin";
 const app = document.getElementById('app');
 ReactDOM.render(
 	<Provider store={store}>
     <Router history={hashHistory}>
      <Route path="/" component ={Layout}> 
-      </Route>
+     </Route>
+    <Route path="admin" component={Admin} />
   </Router>
   </Provider>,
 app);

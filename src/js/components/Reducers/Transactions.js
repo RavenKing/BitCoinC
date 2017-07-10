@@ -2,7 +2,8 @@ export default function Transaction (
   state = {
    status:"Cool",
    BitData:[],
-   DetailData:[]
+   DetailData:[],
+   SystemData:[]
   }, action
 ) {
   switch (action.type) {
@@ -14,15 +15,14 @@ export default function Transaction (
     {
       return {...state,DetailData:action.payload}
     }
-        case "CREATE_DOCUMENT":
-        {
-          const {Documents} = state;
-          Documents.push(action.payload)
-          return {...state,Documents:Documents}
-        }
+     case "SYS_DATA":
+      {
+        return {...state,SystemData:action.payload}
 
+
+      }
     default:{
-      return {...state,status:"INIT"}
+      return {...state}
     }
   }
 

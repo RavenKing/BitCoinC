@@ -1,0 +1,16 @@
+table
+
+
+{
+	描述L：value
+	币，：field
+	价格，：field
+	浮动，：field
+	交易量，：field
+	数据源，：value
+	请求地址，：value
+
+
+
+
+}
